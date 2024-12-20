@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/signUp.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h1>회원가입 페이지라구여</h1>
+<div class="signup-div-1">
+    <label th:for="input-id">ID:</label>
+    <label><input th:id="input-id" th:name="input-id" type="text" placeholder="ID"></label>
+</div>
+<br>
+
+<div class="signup-div-2">
+    <label th:for="input-pw">PW:</label>
+    <label><input th:id="input-pw" th:name="input-pw" type="password" placeholder="PW"></label>
+</div>
+<br>
+
+<div class="signup-div-3">
+    <label th:for="input-nick">NickName:</label>
+    <label><input th:id="input-nick" th:name="input-nick" type="text" placeholder="Nick"></label>
+</div>
+<br>
+
+<div class="signup-div-4">
+    <label th:for="input-age">Age:</label>
+    <label><input th:id="input-age" th:name="input-age" type="number" placeholder="Age"></label>
+</div>
+<br>
+
+<div class="signup-div-5">
+    <button class="signup-btn-1" id="signup-btn-1">회원가입</button><br>
+    <button class="signup-btn-2" id="signup-btn-2">취소</button>
+</div>
+<script type="module" th:src="@{/js/sign/signUp.js}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+.index-section-1 {
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px solid black;
+
+    .index-div-1, .index-div-2 {
+        margin: 0;
+    }
+    .index-div-3 {
+        width: auto;
+        height: 50px;
+        margin: 50px 5px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        button {
+            width: 140px;
+            height: 40px;
+            background-color: #f6dbb8;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
