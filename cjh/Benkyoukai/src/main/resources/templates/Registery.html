@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        .row-header {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+        .cell {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="table">
+    <!-- Table headers -->
+    <div class="row row-header">
+        <div class="cell">ID</div>
+        <div class="cell">PW</div>
+        <div class="cell">Name</div>
+        <div class="cell">Age</div>
+    </div>
+
+    <!-- Data rows, iterated by Thymeleaf -->
+    <div th:each="account : ${accounts}" class="row">
+        <div class="cell" th:text="${account.id}">ID</div>
+        <div class="cell" th:text="${account.pw}">PW</div>
+        <div class="cell" th:text="${account.name}">Name</div>
+        <div class="cell" th:text="${account.age}">Age</div>
+    </div>
+</div>
+
+<button onclick="location.href='/register'">Go Register</button>
+</body>
+</html>
