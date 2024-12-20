@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+<h1>처음 화면이라구요</h1>
+<section class="index-section-1">
+    <div class="index-div-1">
+    <label th:for="input-id">ID:</label>
+    <label><input th:id="input-id" th:name="input-id" type="text" placeholder="ID"></label>
+    </div>
+    <br>
+
+    <div class="index-div-2">
+    <label th:for="input-pw">PW:</label>
+    <label><input th:id="input-pw" th:name="input-pw" type="password" placeholder="PW"></label>
+    </div>
+    <br>
+    <div class="index-div-3">
+    <button>로그인</button><br>
+    <button onclick="goSignUp()">회원가입</button>
+    </div>
+</section>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>
