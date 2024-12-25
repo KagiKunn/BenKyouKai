@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 리스트</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>회원 리스트</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>아이디</th>
+        <th>비밀번호</th>
+        <th>닉네임</th>
+        <th>나이</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 서버에서 전달받은 데이터 반복 -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">아이디</td>
+        <td th:text="${user.password}">비밀번호</td>
+        <td th:text="${user.nickName}">닉네임</td>
+        <td th:text="${user.age}">나이</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
