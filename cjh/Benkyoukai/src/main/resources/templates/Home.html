@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/Home.css">
+    <script src="/js/Home.js" defer></script>
+</head>
+<body>
+<div>
+    <div>Home</div>
+    <div>
+        <!-- JavaScript에서 사용할 수 있도록 data-loggedIn 속성에 loggedIn 값을 전달 -->
+        <div id="app" th:attr="data-loggedIn=${loggedIn}" ></div>
+    </div>
+    <div id="before_login_btn">
+    <form action="/login">
+        <div><button>Login</button></div>
+    </form>
+    <form action="/register">
+        <div><button>Register</button></div>
+    </form>
+    </div>
+    <div id="after_login_btn">
+        <form action="/mypage">
+            <div><button>My Page</button></div>
+
+
+        </form>
+        <form action="/logout">
+            <div><button>LogOut</button></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
