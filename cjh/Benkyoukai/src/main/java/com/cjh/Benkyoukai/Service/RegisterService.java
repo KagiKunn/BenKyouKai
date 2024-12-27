@@ -24,4 +24,31 @@ public class RegisterService implements RegisterMapper {
     public List<RegisterVO> selectAllAccount() {
         return registerMapper.selectAllAccount();
     }
+
+    @Override
+    public int loginAccount(RegisterVO registerVO) {
+        return registerMapper.loginAccount(registerVO);
+    }
+
+    @Override
+    public RegisterVO selectAccountById(RegisterVO registerVO) {
+        return registerMapper.selectAccountById(registerVO);
+    }
+
+    @Override
+    public int updateAccount(RegisterVO registerVO) {
+        return registerMapper.updateAccount(registerVO);
+    }
+
+    @Override
+    public int deleteAccountById(RegisterVO registerVO) {
+        return registerMapper.deleteAccountById(registerVO);
+    }
+
+    @Override
+    public int validChecker(RegisterVO registerVO) {
+        return registerMapper.validChecker(registerVO);
+    }
+
+
 }
