@@ -11,6 +11,7 @@
 <div class="signup-div-1">
     <label th:for="input-id">ID:</label>
     <label><input th:id="input-id" th:name="input-id" type="text" placeholder="ID"></label>
+    <button th:id="check-id-btn">중복확인</button>
 </div>
 <br>
 
@@ -33,7 +34,7 @@
 <br>
 
 <div class="signup-div-5">
-    <button class="signup-btn-1" id="signup-btn-1">회원가입</button><br>
+    <button class="signup-btn-1" id="signup-btn-1">회원가입</button>
     <button class="signup-btn-2" id="signup-btn-2">취소</button>
 </div>
 <script type="module" th:src="@{/js/sign/signUp.js}"></script>
