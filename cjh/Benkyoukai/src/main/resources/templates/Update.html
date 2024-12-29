@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -15,16 +12,19 @@
             flex-direction: column;
             width: 100%;
         }
+
         .row {
             display: flex;
             justify-content: space-between;
             padding: 8px;
             border: 1px solid #ccc;
         }
+
         .row-header {
             font-weight: bold;
             background-color: #f0f0f0;
         }
+
         .cell {
             padding: 5px;
         }
@@ -42,14 +42,23 @@
     </div>
 
     <!-- Data rows, iterated by Thymeleaf -->
-    <div th:each="account : ${accounts}" class="row">
-        <div class="cell" th:text="${account.id}">ID</div>
-        <div class="cell" th:text="${account.pw}">PW</div>
-        <div class="cell" th:text="${account.name}">Name</div>
-        <div class="cell" th:text="${account.age}">Age</div>
-    </div>
+    <form action="/updateInfo">
+
+
+        <div class="row">
+            <div id="id"  class="cell" ><input name="id" type="text" readonly th:value="${accountInfo.id}" ></div>
+            <div id="pw"  class="cell" ><input name="pw" th:value="${accountInfo.pw}"></div>
+            <div id="name"  class="cell" ><input name="name" th:value="${accountInfo.name}"></div>
+            <div id="age"  class="cell" ><input name="age" th:value="${accountInfo.age}"></div>
+
+        </div>
+
+        <button>Update Info</button>
+    </form>
+
 </div>
 
-<button onclick="location.href='/register'">Go Register</button>
+
+<button onclick="location.href='/mypage'">Go Back to My Page</button>
 </body>
 </html>
