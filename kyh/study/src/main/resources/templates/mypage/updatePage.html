@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h1>수정 페이지 입니다요~</h1>
+<label th:for="input-id">ID</label>
+<label><input th:id="input-id" th:placeholder="${login_user.getId()}" th:name="input-id"></label>
+<label th:for="input-pw">PW</label>
+<label><input th:id="input-pw" th:name="input-pw"></label>
+<label th:for="input-nick">Nick</label>
+<label><input th:id="input-nick" th:name="input-nick" th:placeholder="${login_user.getNick()}"></label>
+<div class="update-page-btnbox1">
+    <button th:attr="onclick=|updateUser()|">수정하기</button>
+    <button th:attr="onclick=|goBackPage()|">뒤로가기</button>
+</div>
+<script type="module" th:src="@{/js/mypage/myPage.js}"></script>
+</body>
+</html>

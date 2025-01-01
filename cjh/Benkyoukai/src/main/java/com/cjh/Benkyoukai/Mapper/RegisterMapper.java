@@ -2,9 +2,7 @@ package com.cjh.Benkyoukai.Mapper;
 
 
 import com.cjh.Benkyoukai.DTO.RegisterVO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,4 +14,19 @@ public interface RegisterMapper {
 
     @Select("Select * from Account")
     List<RegisterVO> selectAllAccount();
+
+    @Select("SELECT COUNT(*) FROM Account WHERE id = #{id} AND pw = #{pw}")
+    int loginAccount(RegisterVO registerVO);
+
+    @Select("SELECT * FROM Account WHERE id = #{id} AND pw = #{pw}")
+    RegisterVO selectAccountById(RegisterVO registerVO);
+
+    @Update("update account set pw= #{pw} , name = #{name} , age = #{age} where id = #{id} ")
+    int updateAccount(RegisterVO registerVO);
+
+    @Delete("delete from account where id = #{id}")
+    int deleteAccountById(RegisterVO registerVO);
+    @Select("SELECT COUNT(*) FROM Account WHERE id = #{id} ")
+    int validChecker(RegisterVO registerVO);
+
 }

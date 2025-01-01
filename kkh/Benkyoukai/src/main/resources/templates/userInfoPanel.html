@@ -21,10 +21,17 @@
             <td th:text="${item.getPw()}"></td>
             <td th:text="${item.getName()}"></td>
             <td th:text="${item.getAge()}"></td>
+            <td>
+                <button th:onclick="|location.href='@{/deleteuser(id=${item.id})}'|">delete</button>
+            </td>
+            <td>
+                <button th:onclick="|location.href='@{/updateuser(id=${item.id})}'|">update</button>
+            </td>
+
         </tr>
     </th:block>
     </tbody>
 </table>
-<div><p>login user</p>:<span th:text="${loginUser}"></span></div>
+<div><p>login user</p>:<span th:text="${session.user}"></span></div>
 </body>
 </html>
