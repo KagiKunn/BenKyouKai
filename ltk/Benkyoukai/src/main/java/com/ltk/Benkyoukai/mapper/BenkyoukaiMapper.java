@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface BenkyoukaiMapper {
 
-    @Select("SELECT * FROM users WHERE id = #{id}")
+    @Select("SELECT * FROM benkyoukai WHERE id = #{id}")
     BenkyoukaiVO checkIdDuplicate(String id);
 
     @Insert("INSERT INTO benkyoukai (id, password, nickName, age) VALUES (#{id}, #{password}, #{nickName}, #{age})")
