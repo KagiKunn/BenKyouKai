@@ -2,6 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -9,6 +16,7 @@
 <form th:action="@{/users/register}" method="post">
     <label for="id">아이디:</label>
     <input type="text" id="id" name="id" required>
+    <div th:if="${errorMessage}" class="error" th:text="${errorMessage}"></div>
     <br>
 
     <label for="password">비밀번호:</label>
