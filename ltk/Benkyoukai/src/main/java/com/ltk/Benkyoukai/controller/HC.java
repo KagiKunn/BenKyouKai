@@ -55,8 +55,8 @@ public class HC {
         return "userlist";
     }
 
-    @GetMapping("/")
-    public String main() {
+    @GetMapping("/main")
+    public String registerPage() {
         return "main";
     }
 
@@ -83,8 +83,11 @@ public class HC {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") BenkyoukaiVO benkyoukaiVO) {
-        benkyoukaiService.deleteUser(benkyoukaiVO.getId());
+    public String deleteUser(@PathVariable("id") String id, Model model) {
+        benkyoukaiService.deleteUser(id);
+
+        List<BenkyoukaiVO> users = benkyoukaiService.getAllUsers();
+        model.addAttribute("users", users);
         return "redirect:/userlist";
     }
 
