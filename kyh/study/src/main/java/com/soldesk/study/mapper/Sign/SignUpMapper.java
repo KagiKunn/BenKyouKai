@@ -15,4 +15,10 @@ public interface SignUpMapper {
 
     @Select("select * from User")
     List<UserDTO> getAllUsers();
+
+    @Select("select * from User where id = #{id}")
+    Boolean getUserById(String id);
+
+    @Select("select * from User where id = #{id}")
+    UserDTO getUserDTOById(String id);
 }

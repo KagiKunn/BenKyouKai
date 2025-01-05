@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <h1>처음 화면이라구요</h1>
@@ -20,7 +21,7 @@
     </div>
     <br>
     <div class="index-div-3">
-    <button>로그인</button><br>
+    <button onclick="doSign()">로그인</button><br>
     <button onclick="goSignUp()">회원가입</button>
     </div>
 </section>

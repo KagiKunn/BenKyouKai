@@ -5,14 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="register" method="get" onsubmit="return idValidCheck()">
-        <input name="id" placeholder="id" onblur="idCheck(this.value)">
-        <span id="text"></span>
+    <form action="userupdater" method="get">
+        <input name="id" type="hidden" th:value="${id}">
         <input name="pw" placeholder="pw" type="password">
         <input name="name" placeholder="name">
         <input name="age" placeholder="age">
         <button type="submit">제출</button>
     </form>
-    <script th:src="@{/js/register.js}"></script>
 </body>
 </html>

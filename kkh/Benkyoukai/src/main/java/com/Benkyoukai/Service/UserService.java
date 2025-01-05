@@ -26,4 +26,19 @@ public class UserService {
     public UserInfoDto getUserById(String id){
         return registerMapper.selectUserById(id);
     }
+    public int getCountUserById(String id){
+        return registerMapper.countUserById(id);
+    }
+
+    public int deleteUserById(String id){
+        return registerMapper.deleteUserById(id);
+    }
+
+    public int getUserByIdAndPw(String id,String pw){
+        return registerMapper.countUserByIdAndPw(id,pw);
+    }
+
+    public int updateUserById(UserInfoDto userInfoDto){
+        return registerMapper.updateUserById(userInfoDto);
+    }
 }
