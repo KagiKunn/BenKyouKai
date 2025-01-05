@@ -5,11 +5,12 @@
     <title>ShowAccounts</title>
 </head>
 <body>
-    <th:block th:each="acc : ${checkRegister}">
-        <div th:text="${acc.getId()}"></div>
-        <div th:text="${acc.getPw()}"></div>
-        <div th:text="${acc.getName()}"></div>
-        <div th:text="${acc.getAge()}"></div>
-    </th:block>
+<th:block th:each="acc : ${checkRegister}">
+    <div>ID: <span th:text="${acc.getId()}"></span></div>
+    <div>Password: <span th:text="${acc.getPw()}"></span></div>
+    <div>Name: <span th:text="${acc.getName()}"></span></div>
+    <div>Age: <span th:text="${acc.getAge()}"></span></div>
+    <hr>
+</th:block>
 </body>
 </html>
