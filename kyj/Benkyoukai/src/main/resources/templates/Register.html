@@ -7,15 +7,15 @@
 </head>
 <body>
 <form class="register-form" action="/toRegister" method="post">
-    <h1>Register Account</h1>
+    <h1>회원 가입</h1>
     <div>
-        <input type="text" name="id" placeholder="ID" oninput="checkID()" required>
-        <small id="id-check-message" style="color: red;"></small>
+        <small id="id-check-message" ></small>
+        <input type="text" id="id" name="id" placeholder="ID" oninput="checkID()" required>
     </div>
-    <input type="password" name="pw" placeholder="Password">
-    <input type="text" name="name" placeholder="Name">
-    <input type="number" name="age" placeholder="Age">
-    <button type="submit"> Register</button>
+    <input type="password" name="pw" placeholder="비밀번호">
+    <input type="text" name="name" placeholder="이름">
+    <input type="number" name="age" placeholder="나이">
+    <button type="submit"> 등록 </button>
 </form>
 
 <script>
@@ -41,7 +41,7 @@
             .then(data => {
                 if (data.available) {
                     messageElement.textContent = '사용 가능한 ID입니다.';
-                    messageElement.style.color = 'green';
+                    messageElement.style.color = 'gray';
                 } else {
                     messageElement.textContent = '이미 사용 중인 ID입니다.';
                     messageElement.style.color = 'red';

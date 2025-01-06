@@ -63,38 +63,4 @@ public class RegisterController {
         return response;
     }
 
-
-    //    @PostMapping ("/toRegister")
-//    public String toRegister(RegisterDTO registerDTO, Model model){
-//
-//        // ID 중복 확인
-//        int count = registerService.checkDuplicateId(registerDTO.getId());
-//
-//        if(count > 0){
-//            model.addAttribute("errorMessage", "이미 사용 중인 ID입니다.");
-//            return "Register";
-//        }
-//
-//        // ID 중복이 아닐 경우, 계정 등록
-//        int checkRegister = registerService.registerAccount(registerDTO);
-//        System.out.println(checkRegister);
-//
-//        return "redirect:/showAccounts";
-//    }
-
-
-//    @PostMapping("/checkDuplicateId")
-//    public String checkDuplicateId(@RequestBody String id) {
-//        int count = registerService.checkDuplicateId(id);
-//
-//        if (count > 0) {
-//            System.out.println("중복된 ID입니다: " + id);
-//            return "중복된 ID";
-//        } else {
-//            System.out.println("사용 가능한 ID입니다: " + id);
-//            return "사용 가능한 ID";
-//        }
-//    }
-
-
 }
