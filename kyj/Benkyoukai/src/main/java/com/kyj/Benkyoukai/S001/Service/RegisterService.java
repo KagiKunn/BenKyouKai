@@ -23,6 +23,11 @@ public class RegisterService implements RegisterMapper {
 
     // 계정 등록 처리
     public int registerAccount(RegisterDTO registerDTO) {
+        // ID 중복 검사
+        int duplicateCount = registerMapper.checkDuplicateId(registerDTO.getId());
+        if (duplicateCount > 0) {
+            return 0;
+        }
         return registerMapper.registerAccount(registerDTO);
     }
     // == 이 요리(registerAccount)는 레스토랑 어디에서든 웨이터가 주문할 수 있고(public),

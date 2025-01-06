@@ -35,7 +35,8 @@ public class RegisterController {
         if (checkRegister == 1) {
             return "redirect:/showAccounts";
         } else {
-            return "Register";
+//            return "Register";
+            return "redirect:/register?error=true";
         }
 
     }

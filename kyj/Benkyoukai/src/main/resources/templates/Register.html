@@ -9,6 +9,9 @@
 <form class="register-form" action="/toRegister" method="post">
     <h1>회원 가입</h1>
     <div>
+        <small style="color: red;" th:if="${param.error}" th:text="'중복된 ID입니다. 다른 ID를 입력해주세요.'"></small>
+    </div>
+    <div>
         <small id="id-check-message" ></small>
         <input type="text" id="id" name="id" placeholder="ID" oninput="checkID()" required>
     </div>
