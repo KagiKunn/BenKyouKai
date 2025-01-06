@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("loginProcess")
     public String LoginProcess(@Param("id") String id, @Param("pw") String pw, Model model, HttpSession session) {
-        if(userService.getUserByIdAndPw(id,pw)>0){
+        if(userService.getUserAuthenticate(id,pw)>0){
             session.setAttribute("user",id);
             return "redirect:/userinfopanel";
 

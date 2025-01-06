@@ -5,7 +5,11 @@
     <title>Home</title>
 </head>
 <body>
-  <button th:onclick="|location.href='@{/login}'|">로그인</button>
-  <button th:onclick="|location.href='@{/registry}'|">회원가입</button>
+  <button type="button" th:onclick="|location.href='@{/login}'|">로그인</button>
+  <button type="button" th:onclick="|location.href='@{/registry}'|">회원가입</button>
+  <form action="imgUpload" method="post" enctype="multipart/form-data">
+      <input type = "file" accept="image/*" name="img">
+      <button type="submit">fileUpload</button>
+  </form>
 </body>
 </html>
