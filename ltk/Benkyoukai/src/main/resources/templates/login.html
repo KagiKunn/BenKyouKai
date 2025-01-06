@@ -11,8 +11,9 @@
     </script>
 </head>
 <body>
+
     <h1>Login</h1>
-    <form action="/login" method="post">
+    <form action="/loginProcess" method="post" onsubmit="checkLogin()">
         <label for="id">ID: </label>
         <input type="text" id="id" name="id" required>
         <br><br>
@@ -21,6 +22,9 @@
         <br><br>
         <button type="submit">Login</button>
     </form>
+
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+
 
     <br>
     <button onclick="goToRegisterPage()">Go TO 회원가입</button>

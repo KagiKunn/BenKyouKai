@@ -8,8 +8,11 @@ import java.util.List;
 @Mapper
 public interface BenkyoukaiMapper {
 
+    @Select("SELECT COUNT(*) FROM benkyoukai WHERE id = #{id}")
+    int checkIdDuplicate(String id);
+
     @Select("SELECT * FROM benkyoukai WHERE id = #{id}")
-    BenkyoukaiVO checkIdDuplicate(String id);
+    BenkyoukaiVO getUserByID(String id);
 
     @Insert("INSERT INTO benkyoukai (id, password, nickName, age) VALUES (#{id}, #{password}, #{nickName}, #{age})")
     void insertUsers(BenkyoukaiVO benkyoukaiVO);
