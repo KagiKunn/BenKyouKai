@@ -1,0 +1,77 @@
+/* 페이지 전체 기본 설정 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* 폼 컨테이너 스타일 */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    box-sizing: border-box;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"], input[type="password"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* 버튼 스타일 */
+button[type="button"], button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* 버튼에 마우스 올릴 때 스타일 */
+button[type="button"]:hover, button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* 중복 확인 메시지 스타일 */
+#duplicate-msg {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* ID 중복 시 메시지 스타일 */
+.taken {
+    color: red;
+}
+
+/* ID 사용 가능 시 메시지 스타일 */
+.available {
+    color: green;
+}
+
+/* 에러 메시지 스타일 */
+.error {
+    color: red;
+    font-weight: bold;
+}
