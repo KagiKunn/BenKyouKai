@@ -58,13 +58,13 @@
     </form>
 
 </div>
-<img id="uploadedImage" src="/images/profile.png"  alt="Profile Image" style="max-width: 300px;">
-<form action="/upload" method="post" enctype="multipart/form-data">
+<img id="uploadedImage" src="/images/profile.png" alt="Uploaded Image" style="max-width: 300px;">
+<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
     <input type="file" name="file" id="file">
-    <button>upload my profile image</button>
-
-
+    <button type="submit">Upload my profile image</button>
 </form>
+
+
 <button onclick="deleteAccount(id)">Delete Account</button>
 <button onclick="location.href='/'">Go to Home</button>
 </body>
