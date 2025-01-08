@@ -32,3 +32,23 @@ function deleteAccount(id) {
         }
     }
 }
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    e.preventDefault();  // 기본 폼 제출 방지
+
+    const formData = new FormData(this);  // 폼 데이터 가져오기
+    const xhr = new XMLHttpRequest();  // AJAX 요청 객체 생성
+
+    xhr.open('POST', '/upload', true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // 업로드가 성공적으로 완료된 경우, 이미지를 새로고침
+            document.getElementById('uploadedImage').src = "/images/profile.png" // + new Date().getTime();  // 캐시 방지
+            location.href = '/';
+        } else {
+            alert("Error uploading the image.");
+        }
+    };
+
+    xhr.send(formData);  // 폼 데이터 전송
+});
