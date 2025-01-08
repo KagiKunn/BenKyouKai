@@ -53,12 +53,18 @@
 
         </div>
 
+
         <button>Update Info</button>
     </form>
 
 </div>
+<img id="uploadedImage" src="/images/profile.png"  alt="Profile Image" style="max-width: 300px;">
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file">
+    <button>upload my profile image</button>
 
 
+</form>
 <button onclick="deleteAccount(id)">Delete Account</button>
 <button onclick="location.href='/'">Go to Home</button>
 </body>

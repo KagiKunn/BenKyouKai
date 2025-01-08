@@ -50,5 +50,10 @@ public class RegisterService implements RegisterMapper {
         return registerMapper.validChecker(registerVO);
     }
 
+    @Override
+    public String selectPasswordById(RegisterVO registerVO) {
+        return registerMapper.selectPasswordById(registerVO);
+    }
+
 
 }
