@@ -8,6 +8,7 @@
 <body>
     <h1>메인입니다~</h1>
     <p th:text="${login_user.getId()+'님 어서오세요!'}"></p>
+    <img th:src="${login_user.getImg()}" th:class="profile-img" th:alt="profile_img">
     <button th:attr="onclick=|goUpdatePage()|">수정하기</button>
     <button th:attr="onclick=|deleteUser('${login_user.getId()}')|">삭제하기</button>
 

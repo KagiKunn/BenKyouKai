@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const signup_btn = document.getElementById("signup-btn-1");
     const signup_cancel_btn = document.getElementById("signup-btn-2");
     const check_id_btn = document.getElementById("check-id-btn");
+    const input_img_btn = document.getElementById("input-img");
 
     //global variable
     let check_id_result = false;
@@ -13,6 +14,17 @@ document.addEventListener("DOMContentLoaded", function(){
         location.href="/";
     }
 
+    //preview img
+    const previewImg = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            let img = document.getElementById("img-user");
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
     //signup
     const doSignUp = () => {
         //input name
@@ -21,13 +33,18 @@ document.addEventListener("DOMContentLoaded", function(){
         let nickname = document.getElementById("input-nick").value;
         let age = document.getElementById("input-age").value;
         age = Number(age);
+        let img = document.getElementById("input-img").files[0];
 
-        axios.post("/sign/doSignUp", {
-            id,
-            pw,
-            nick: nickname,
-            age
-        })
+        //form data
+        const formData = new FormData();
+        formData.append("id", id);
+        formData.append("pw", pw);
+        formData.append("nick", nickname);
+        formData.append("age", age);
+        formData.append("img", img);
+
+        //signup
+        axios.post("/sign/doSignUp", formData)
             .then(res => {
                 if(res.status === 200) {
                     console.log("성공");
@@ -37,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function(){
             })
             .catch(err => {
                 console.error(err);
-                location.href = "/sign/goSignUp";
             })
     }
 
@@ -77,5 +93,8 @@ document.addEventListener("DOMContentLoaded", function(){
     })
     check_id_btn.addEventListener("click", () => {
         doCheckId();
+    })
+    input_img_btn.addEventListener("change", (event) => {
+        previewImg(event);
     })
 });
