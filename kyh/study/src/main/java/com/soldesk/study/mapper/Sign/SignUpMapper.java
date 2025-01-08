@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface SignUpMapper {
 
-    @Insert("insert into User values(null, #{id}, #{pw}, #{nick}, #{age})")
+    @Insert("insert into User values(null, #{id}, #{pw}, #{nick}, #{age}, #{img})")
     int insertUser(UserDTO userDTO);
 
     @Select("select * from User")
