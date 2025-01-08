@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1>회원 리스트</h1>
+
+<div th:if="${loggedInUser != null}">
+    <p>Logged in as: <span th:text="${loggedInUser.nickName}"></span></p>
+</div>
+
 <table border="1">
     <thead>
     <tr>
@@ -22,8 +27,16 @@
         <td th:text="${user.password}">비밀번호</td>
         <td th:text="${user.nickName}">닉네임</td>
         <td th:text="${user.age}">나이</td>
+        <td>
+            <form th:action="@{/delete/{id}(id=${user.id})}" method="post">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>

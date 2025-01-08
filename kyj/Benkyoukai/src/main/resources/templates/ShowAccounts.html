@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ShowAccounts</title>
+</head>
+<body>
+<th:block th:each="acc : ${checkRegister}">
+    <div>ID: <span th:text="${acc.getId()}"></span></div>
+    <div>Password: <span th:text="${acc.getPw()}"></span></div>
+    <div>Name: <span th:text="${acc.getName()}"></span></div>
+    <div>Age: <span th:text="${acc.getAge()}"></span></div>
+    <hr>
+</th:block>
+</body>
+</html>

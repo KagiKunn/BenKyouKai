@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <script>
+        // 회원가입 페이지로 이동하는 함수
+        function goToRegisterPage() {
+            window.location.href = "/main";
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Login</h1>
+    <form action="/loginProcess" method="post" onsubmit="checkLogin()">
+        <label for="id">ID: </label>
+        <input type="text" id="id" name="id" required>
+        <br><br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+
+
+    <br>
+    <button onclick="goToRegisterPage()">Go TO 회원가입</button>
+</body>
+</html>

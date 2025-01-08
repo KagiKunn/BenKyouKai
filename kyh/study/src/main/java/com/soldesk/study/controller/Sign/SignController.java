@@ -2,7 +2,10 @@ package com.soldesk.study.controller.Sign;
 
 import com.soldesk.study.dto.UserDTO;
 import com.soldesk.study.service.Sign.SignUpDAO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,9 @@ import java.util.List;
 public class SignController {
     @Autowired
     private SignUpDAO signDAO;
+
+    //crypt object
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping("/goSignUp")
     public String goSignUp() {
@@ -27,18 +33,25 @@ public class SignController {
         return "result";
     }
 
+    @GetMapping("/doCheckId")
+    @ResponseBody //json 타입으로 반환값
+    public int doCheckId(@RequestParam("id") String id) {
+        if(signDAO.getUserById(id) != null) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     @PostMapping("/doSignUp")
     public String doSignUp(@ModelAttribute UserDTO userDTO,
-                           @RequestBody UserDTO param,
-                           Model model) {
-        System.out.println("포스트다.");
-        System.out.println("check request body => "+param.getId());
-        System.out.println("check request body => "+param.getPw());
-        System.out.println("check request body => "+param.getNick());
-        System.out.println("check request body => "+param.getAge());
-        //파라미터 받는것부터
+                           @RequestBody UserDTO param) {
+        //pw crypt
+        String encodePw = passwordEncoder.encode(param.getPw());
+
+        //set UserDTO
         userDTO.setId(param.getId());
-        userDTO.setPw(param.getPw());
+        userDTO.setPw(encodePw);
         userDTO.setNick(param.getNick());
         userDTO.setAge(param.getAge());
 
@@ -48,7 +61,36 @@ public class SignController {
             return "result";
         } else {
             System.out.println("가입 실패");
-            return "sign/signUp";
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/doSign")
+    @ResponseBody
+    public int doSign(@RequestBody UserDTO param,
+                               HttpServletRequest request) {
+        String id = param.getId();
+        String pw = param.getPw();
+        System.out.println("id => " + id);
+        System.out.println("pw => " + pw);
+        UserDTO loginUserInfo = signDAO.getUserDTOById(id);
+        System.out.println("session => "+signDAO.getUserDTOById(id));
+
+        String encodePw = passwordEncoder.encode(param.getPw());
+        boolean isMatch = passwordEncoder.matches(param.getPw(), encodePw);
+        System.out.println("check pw => "+encodePw);
+        System.out.println("check isMatch => "+isMatch);
+
+        //pw match
+        if (isMatch && loginUserInfo != null) {
+                System.out.println("성공");
+                HttpSession session = request.getSession();
+                session.setAttribute("loginUserInfo", loginUserInfo);
+
+                return 1;
+        } else {
+            System.out.println("실패");
+            return 0;
         }
     }
 }
