@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>사용자 정보 수정</h1>
+<form th:action="@{/edit}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password" th:value="${user.password}" required>
+    <br>
+
+    <label for="nickName">닉네임:</label>
+    <input type="text" id="nickName" name="nickName" th:value="${user.nickName}" required>
+    <br>
+
+    <label for="age">나이:</label>
+    <input type="number" id="age" name="age" th:value="${user.age}" required>
+    <br>
+
+    <button type="submit">수정</button>
+    <button type="button" onclick="window.location.href='/userList'">취소</button>
+</form>
+</body>
+</html>

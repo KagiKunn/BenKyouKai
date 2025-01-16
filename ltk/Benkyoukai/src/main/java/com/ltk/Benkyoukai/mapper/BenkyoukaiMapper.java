@@ -25,4 +25,7 @@ public interface BenkyoukaiMapper {
 
     @Delete("DELETE FROM benkyoukai where id = #{id}")
     void deleteUser(String id);
+
+    @Update("UPDATE benkyoukai SET password = #{password}, nickName = #{nickName}, age = #{age} WHERE id = #{id}")
+    void updateUser(BenkyoukaiVO benkyoukaiVO);
 }

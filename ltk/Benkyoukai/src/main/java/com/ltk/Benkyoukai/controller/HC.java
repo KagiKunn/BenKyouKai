@@ -5,24 +5,26 @@ import com.ltk.Benkyoukai.service.BenkyoukaiService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static java.lang.System.out;
+
 @Controller
 public class HC {
 
     private final BenkyoukaiService benkyoukaiService;
+    private final PasswordEncoder passwordEncoder;
 
-    public HC(BenkyoukaiService benkyoukaiService) {
+    public HC(BenkyoukaiService benkyoukaiService, PasswordEncoder passwordEncoder) {
         this.benkyoukaiService = benkyoukaiService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
@@ -34,27 +36,58 @@ public class HC {
     public String loginUser(@RequestParam String id, @RequestParam String password,
                             HttpSession session,
                             Model model, HttpServletResponse response) throws IOException {
-        BenkyoukaiVO user = benkyoukaiService.getUser(id, password);
-        System.out.println("유저 정보 : " + user);
+//        if (user != null) {
+//            session.setAttribute("user", user);
+//            return "redirect:/userList";  // 로그인 성공 시 회원 리스트 페이지로 이동
+//        } else {
+//            response.setContentType("text/html; charset=euc-kr");
+//            PrintWriter out = response.getWriter();
+//            if (benkyoukaiService.getUserById(id) == null) {
+//                out.println("<script>alert('없는 아이디입니다'); location.href='/'</script>");
+//            } else {
+//                out.println("<script>alert('비밀번호가 틀렸습니다'); location.href='/'</script>");
+//            }
+//            out.flush();
+//            return "";
+//        }
+
+        BenkyoukaiVO user = benkyoukaiService.getUserById(id);
+
         if (user != null) {
-            session.setAttribute("user", user);
-            return "redirect:/userList";  // 로그인 성공 시 회원 리스트 페이지로 이동
+            // 기존 비밀번호와 암호화된 비밀번호를 비교
+            boolean isPasswordMatch = passwordEncoder.matches(password, user.getPassword());
+            boolean isPlainPasswordMatch = password.equals(user.getPassword());
+
+            // 디버그 로그 출력
+            System.out.println("Encrypted Password match result: " + isPasswordMatch);
+            System.out.println("Plain Password match result: " + isPlainPasswordMatch);
+
+            if (isPasswordMatch || isPlainPasswordMatch) {
+                // 성공: 세션에 유저 정보를 저장하고 리다이렉트
+                session.setAttribute("user", user);
+                return "redirect:/userList";
+            } else {
+                // 실패: 비밀번호가 틀린 경우
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('비밀번호가 틀렸습니다'); location.href='/'</script>");
+                out.flush();
+                return "";
+            }
         } else {
+            // 실패: 아이디가 존재하지 않는 경우
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
-            if (benkyoukaiService.getUserById(id) == null) {
-                out.println("<script>alert('없는 아이디입니다'); location.href='/'</script>");
-            } else {
-                out.println("<script>alert('비밀번호가 틀렸습니다'); location.href='/'</script>");
-            }
+            out.println("<script>alert('없는 아이디입니다'); location.href='/'</script>");
             out.flush();
             return "";
         }
+
     }
 
     @GetMapping("/check-id")
     public ResponseEntity<Boolean> checkId(@RequestParam("id") String id) {
-        System.out.println(id);
+        out.println(id);
         boolean isDuplicate = benkyoukaiService.isIdDuplicate(id);
         return ResponseEntity.ok(isDuplicate);
     }
@@ -66,6 +99,7 @@ public class HC {
         if (loggedInUser != null) {
            model.addAttribute("loggedInUser", loggedInUser); // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
         }
+        
 
         // 사용자 정보 및 목록 페이지 표시
         List<BenkyoukaiVO> users = benkyoukaiService.getAllUsers();
@@ -84,7 +118,10 @@ public class HC {
         if(benkyoukaiService.isIdDuplicate(benkyoukaiVO.getId())){
             model.addAttribute("errorMessage", "이미 사용 중인 ID입니다!");
         }
-        return "userList";
+
+        benkyoukaiService.registerUser(benkyoukaiVO);
+
+        return "login";
     }
 
     @PostMapping("/logout")
@@ -93,7 +130,7 @@ public class HC {
         session.invalidate();  // 세션을 무효화
 
         // 로그인 페이지로 리다이렉트
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @PostMapping("/delete/{id}")
@@ -102,7 +139,22 @@ public class HC {
 
         List<BenkyoukaiVO> users = benkyoukaiService.getAllUsers();
         model.addAttribute("users", users);
-        return "redirect:/userlist";
+        return "redirect:/userList";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") String id, Model model) {
+        out.println("Received ID: " + id); // 로그로 확인
+        BenkyoukaiVO benkyoukaiVO = benkyoukaiService.getUserById(id);
+        out.println("체크: " + benkyoukaiVO);
+        model.addAttribute("user", benkyoukaiVO);
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute BenkyoukaiVO updatedUser) {
+        benkyoukaiService.updateUser(updatedUser);
+        return "redirect:/userList";
     }
 
 //    @GetMapping("/show")
