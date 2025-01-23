@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>회원가입 페이지라구여</h1>
+<div class="signup-div-0">
+    <img th:class="img-user" th:id="img-user" th:onchange="previewImg()" th:src="@{/images/user.png}">
+    <input th:id="input-img" th:name="input-img" type="file">
+</div>
+<br>
 <div class="signup-div-1">
     <label th:for="input-id">ID:</label>
     <label><input th:id="input-id" th:name="input-id" type="text" placeholder="ID"></label>

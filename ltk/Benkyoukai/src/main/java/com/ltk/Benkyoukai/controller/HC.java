@@ -99,7 +99,7 @@ public class HC {
         if (loggedInUser != null) {
            model.addAttribute("loggedInUser", loggedInUser); // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
         }
-        
+
 
         // 사용자 정보 및 목록 페이지 표시
         List<BenkyoukaiVO> users = benkyoukaiService.getAllUsers();

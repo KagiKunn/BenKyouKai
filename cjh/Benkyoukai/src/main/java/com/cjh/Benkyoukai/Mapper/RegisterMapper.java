@@ -18,7 +18,7 @@ public interface RegisterMapper {
     @Select("SELECT COUNT(*) FROM Account WHERE id = #{id} AND pw = #{pw}")
     int loginAccount(RegisterVO registerVO);
 
-    @Select("SELECT * FROM Account WHERE id = #{id} AND pw = #{pw}")
+    @Select("SELECT * FROM Account WHERE id = #{id}")
     RegisterVO selectAccountById(RegisterVO registerVO);
 
     @Update("update account set pw= #{pw} , name = #{name} , age = #{age} where id = #{id} ")
@@ -29,4 +29,6 @@ public interface RegisterMapper {
     @Select("SELECT COUNT(*) FROM Account WHERE id = #{id} ")
     int validChecker(RegisterVO registerVO);
 
+    @Select(("select pw from account where id = #{id}"))
+    String selectPasswordById(RegisterVO registerVO);
 }

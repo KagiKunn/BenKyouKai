@@ -16,7 +16,7 @@ public class MyPageDAO implements MyPageMapper {
     }
 
     @Override
-    public int updateUser(String id, String pw, String nick, String login_user) {
-        return myPageMapper.updateUser(id, pw, nick, login_user);
+    public int updateUser(String id, String pw, String nick, String img, String login_user) {
+        return myPageMapper.updateUser(id, pw, nick, img, login_user);
     }
 }
