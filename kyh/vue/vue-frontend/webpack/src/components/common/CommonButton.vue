@@ -1,6 +1,6 @@
 <template>
   <div class="login-btn-box">
-    <button>{{value}}</button>
+    <button v-on:click="handleClick">{{text}}</button>
   </div>
 </template>
 
