@@ -6,7 +6,8 @@
     <label for="pw">PW:</label>
     <label><input type="password" id="pw"></label><br/>
 
-    <CommonButton value="Login"/>
+    <CommonButton text="Login" route="/"/><br/>
+    <CommonButton text="SignUp" route="/signup"/>
   </div>
 </template>
 
